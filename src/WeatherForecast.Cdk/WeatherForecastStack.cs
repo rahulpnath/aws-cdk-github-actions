@@ -39,23 +39,23 @@ namespace WeatherForecast.Cdk
             });
 
             // Lambda Function To Process SQS
-            var weatherLambdaFunction = new Function(this, "WeatherDataProcessor", new FunctionProps
-            {
-                FunctionName = "weather-data-processor",
-                Runtime = Runtime.DOTNET_8,
-                Handler = "WeatherForecast.Service::WeatherForecast.Service.Function::FunctionHandler",
-                Code = Code.FromAsset("./artifacts/service.zip"),
-                Timeout = Duration.Seconds(30),
-                Environment = new Dictionary<string, string>
-                {
-                    {"DYNAMODB_TABLE_NAME", weatherForecastTable.TableName},
-                    {"SQS_QUEUE_URL", weatherDataQueue.QueueUrl}
-                }
-            });
+            // var weatherLambdaFunction = new Function(this, "WeatherDataProcessor", new FunctionProps
+            // {
+            //     FunctionName = "weather-data-processor",
+            //     Runtime = Runtime.DOTNET_8,
+            //     Handler = "WeatherForecast.Service::WeatherForecast.Service.Function::FunctionHandler",
+            //     Code = Code.FromAsset("./artifacts/service.zip"),
+            //     Timeout = Duration.Seconds(30),
+            //     Environment = new Dictionary<string, string>
+            //     {
+            //         {"DYNAMODB_TABLE_NAME", weatherForecastTable.TableName},
+            //         {"SQS_QUEUE_URL", weatherDataQueue.QueueUrl}
+            //     }
+            // });
             // Grant permissions for Lambda to access SQS
-            weatherForecastTable.GrantReadWriteData(weatherLambdaFunction);
+            // weatherForecastTable.GrantReadWriteData(weatherLambdaFunction);
             // Add SQS as an event source for the Lambda function
-            weatherLambdaFunction.AddEventSource(new SqsEventSource(weatherDataQueue));
+            // weatherLambdaFunction.AddEventSource(new SqsEventSource(weatherDataQueue));
 
             // Lambda Function to Host API
             var environmentVariables = new Dictionary<string, string>();
