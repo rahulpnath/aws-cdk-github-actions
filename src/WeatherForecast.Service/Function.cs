@@ -29,7 +29,7 @@ public class Function
     private async Task ProcessMessageAsync(SQSEvent.SQSMessage message, ILambdaContext context)
     {
         var weatherForecastAddedEvent = JsonSerializer.Deserialize<WeatherForecastAddedEvent>(message.Body);
-        context.Logger.LogInformation($"Updated Processed message for City {weatherForecastAddedEvent.City} on {weatherForecastAddedEvent.DateTime} with Temperature {weatherForecastAddedEvent.TemperatureC}");
+        context.Logger.LogInformation($"Processed message for City {weatherForecastAddedEvent.City} on {weatherForecastAddedEvent.DateTime} with Temperature {weatherForecastAddedEvent.TemperatureC}");
         await Task.CompletedTask;
     }
 }
