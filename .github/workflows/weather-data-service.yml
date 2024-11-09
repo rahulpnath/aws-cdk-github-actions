@@ -46,4 +46,4 @@ jobs:
           aws-region: "ap-southeast-2"
 
       - name: CDK Deploy
-        run: cdk deploy --all -require-approval never
+        run: cdk deploy --all --require-approval never
