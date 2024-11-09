@@ -33,9 +33,9 @@ jobs:
 
       - name: Package API
         run: |
-          dotnet lambda package --project-location .\src\WeatherForecast.Api\ `
-          --configuration Release `
-          --framework net8.0 `
+          dotnet lambda package --project-location .\src\WeatherForecast.Api\ \
+          --configuration Release \
+          --framework net8.0 \
           --output-package artifacts/api.zip
 
       - name: Configure AWS Credentials
